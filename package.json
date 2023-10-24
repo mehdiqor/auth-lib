@@ -12,6 +12,9 @@
     "type": "git",
     "url": "https://github.com/mehdiqor/auth-lib.git"
   },
+  "publishConfig": {
+    "registry": "https://npm.pkg.github.com/"
+  },
   "dependencies": {
     "axios": "^1.5.1",
     "protobufjs": "^6.11.2",
