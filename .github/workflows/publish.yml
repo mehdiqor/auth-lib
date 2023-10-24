@@ -1,28 +1,47 @@
 name: Publish to GitHub Packages
 on:
-  release:
-    types: [created]
+  push:
+    branches: [main]
+  pull_request:
+    branches: [main]
 jobs:
   build:
-    runs-on: ubuntu-latest
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
-      - uses: actions/setup-node@v1
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
         with:
-          node-version: '20.0.0'
-          registry-url: 'https://npm.pkg.github.com'
+          node-version: 14.x
       - run: npm ci
+      - run: npm run lint
       - run: npm test
-  publish:
-    needs: build
-    runs-on: ubuntu-latest
+  package:
+    needs: [build]
+    runs-on: ubuntu-18.04
     steps:
       - uses: actions/checkout@v2
+      - name: Use Node.js 14.x
+        uses: actions/setup-node@v1
+        with:
+          node-version: 14.x
+      - run: npm ci
+  publish:
+    name: 'Publish to GitHub Packages'
+    needs: [package]
+    runs-on: ubuntu-18.04
+    if: github.repository_owner == 'aaronpowell'
+    steps:
+      - name: Upload
+        uses: actions/download-artifact@v2
+        with:
+          name: package
       - uses: actions/setup-node@v1
         with:
-          node-version: '20.0.0'
-          registry-url: 'https://npm.pkg.github.com'
-      - run: npm ci
-      - run: npm publish
+          node-version: 14.x
+          registry-url: https://npm.pkg.github.com/
+          scope: '@aaronpowell'
+      - run: echo "registry=https://npm.pkg.github.com/@aaronpowell" >> .npmrc
+      - run: npm publish $(ls *.tgz)
         env:
           NODE_AUTH_TOKEN: ${{secrets.GITHUB_TOKEN}}
