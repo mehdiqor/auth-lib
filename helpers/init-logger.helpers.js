@@ -30,8 +30,10 @@ const consleFormat = combine(
   ),
 );
 
+const level = process.env.LIB_LOG_LEVEL || 'info';
+
 const consoleOptions = {
-  level: 'info',
+  level,
   format: consleFormat,
   handleExceptions: true,
   json: false,
@@ -40,7 +42,7 @@ const consoleOptions = {
 const graylogFormat = combine(splat(), timestamp({ format: 'isoDateTime' }));
 
 const graylogOptions = {
-  level: 'debug',
+  level,
   format: graylogFormat,
   gelfPro: {
     fields: {

@@ -1,5 +1,5 @@
-const { validateAuthData } = require('../services/auth-module.service');
 const { METHODS, CONFIGS } = require('../utils/constants.utility');
+const { validateAuthData } = require('../services/auth.service');
 const { ProtoService } = require('../services/proto.service');
 const logger = require('../helpers/init-logger.helpers');
 
