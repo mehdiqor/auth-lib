@@ -16,7 +16,7 @@ class ProtoService {
         defaults: true,
       });
 
-      logger.debug('proto buffer converted to JSON');
+      logger.info('proto buffer converted to JSON');
 
       return result;
     } catch (error) {
@@ -42,7 +42,7 @@ class ProtoService {
       const message = MessageType.create(data);
       const result = MessageType.encode(message).finish();
 
-      logger.debug('JSON converted to proto buffer');
+      logger.info('JSON converted to proto buffer');
 
       return result;
     } catch (error) {

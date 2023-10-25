@@ -65,6 +65,8 @@ class Processor {
 
     const result = await validateAuthData(jsonData.id, jsonData.payload);
 
+    logger.info(`data validated, converting data to proto buffer...`);
+
     const protoData = this.jsonToProto(result, this.outputConfig);
 
     return protoData;
