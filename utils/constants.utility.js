@@ -24,8 +24,17 @@ module.exports = Object.freeze({
       path: path.join(__dirname, '../proto/http.proto'),
       messageType: 'HTTPMessage',
     },
-    COAP: {},
-    MQTT: {},
-    SOCKET: {},
+    COAP: {
+      path: path.join(__dirname, '../proto/coap.proto'),
+      messageType: 'COAPMessage',
+    },
+    MQTT: {
+      path: path.join(__dirname, '../proto/mqtt.proto'),
+      messageType: 'MqttMessage',
+    },
+    SOCKET: {
+      path: path.join(__dirname, '../proto/socket.proto'),
+      messageType: 'SocketMessage',
+    },
   },
 });

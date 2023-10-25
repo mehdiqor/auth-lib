@@ -3,3 +3,4 @@
 /rabbitmq
 *.env
 *.npmrc
+*.prettierrc

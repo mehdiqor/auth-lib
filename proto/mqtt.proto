@@ -1,0 +1,7 @@
+syntax = "proto3";
+
+message MqttMessage {
+  string username = 1;
+  string password = 2;
+  string clientId = 3;
+}
