@@ -4,3 +4,4 @@
 *.env
 *.npmrc
 *.prettierrc
+package-lock.json
