@@ -4,8 +4,8 @@ const { ProtoService } = require('../services/proto.service');
 const logger = require('../helpers/init-logger.helpers');
 
 class Processor {
-  constructor(method) {
-    this.method = method;
+  constructor(protocol) {
+    this.protocol = protocol;
     this.outputConfig = CONFIGS.RESPONSE;
     this.httpConfig = CONFIGS.HTTP;
     this.coapConfig = CONFIGS.COAP;
@@ -13,12 +13,12 @@ class Processor {
     this.socketConfig = CONFIGS.SOCKET;
   }
 
-  findConfigByMethod() {
+  findConfigByProtocol() {
     let config;
 
-    logger.debug(`finding proto config by method ${this.method}`);
+    logger.debug(`finding proto config by protocol ${this.protocol}`);
 
-    switch (this.method) {
+    switch (this.protocol) {
       case METHODS.HTTP:
         config = this.httpConfig;
         break;
@@ -43,7 +43,7 @@ class Processor {
   }
 
   jsonToProto(data, config) {
-    if (!config) config = this.findConfigByMethod();
+    if (!config) config = this.findConfigByProtocol();
 
     const toProto = ProtoService.JsonToProto(data, config);
 
@@ -59,11 +59,11 @@ class Processor {
   }
 
   async validator(data) {
-    const config = this.findConfigByMethod();
+    const config = this.findConfigByProtocol();
 
     const jsonData = this.protoToJson(data, config);
 
-    const result = await validateAuthData(jsonData.id, jsonData.payload);
+    const result = await validateAuthData(jsonData);
 
     logger.info(`data validated, converting data to proto buffer...`);
 

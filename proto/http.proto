@@ -1,7 +1,7 @@
 syntax = "proto3";
 
 message HTTPMessage {
-  string id = 1;
+  string protocol = 1;
   Payload payload = 2; 
 
   message Payload {

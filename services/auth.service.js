@@ -1,16 +1,13 @@
 const logger = require('../helpers/init-logger.helpers');
 const axios = require('axios');
 
-async function validateAuthData(id, data) {
+async function validateAuthData(data) {
   logger.info(
-    `sending data to auth module service with axios for validate data`,
-    {
-      authId: id,
-    },
+    'sending data to auth module service with axios for validate data',
   );
 
   const base = process.env['AUTH_MODULE_SERVICE'];
-  const url = base + '/auth-module/v1/validate/' + id;
+  const url = base + '/auth-module/v1/validate';
 
   const result = await axios({
     url,
