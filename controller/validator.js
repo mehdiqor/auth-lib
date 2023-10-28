@@ -11,6 +11,13 @@ class Processor {
     this.coapConfig = CONFIGS.COAP;
     this.mqttConfig = CONFIGS.MQTT;
     this.socketConfig = CONFIGS.SOCKET;
+
+    this.checkProtocol();
+  }
+
+  checkProtocol() {
+    if (!Object.values(METHODS).includes(this.protocol))
+      throw new Error('Invalid protocol');
   }
 
   findConfigByProtocol() {
