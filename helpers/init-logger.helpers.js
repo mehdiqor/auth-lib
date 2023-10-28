@@ -7,7 +7,6 @@ const {
 } = require('winston');
 const { combine, colorize, label, timestamp, printf, splat } = format;
 const winstonGelf = require('winston-gelf');
-require('dotenv').config();
 
 addColors({
   emerg: 'underline magenta',
