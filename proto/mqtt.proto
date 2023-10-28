@@ -2,7 +2,7 @@ syntax = "proto3";
 
 message MqttMessage {
   string protocol = 1;
-  string username = 1;
-  string password = 2;
-  string clientId = 3;
+  string username = 2;
+  string password = 3;
+  string clientId = 4;
 }

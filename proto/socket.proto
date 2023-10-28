@@ -2,5 +2,5 @@ syntax = "proto3";
 
 message SocketMessage {
   string protocol = 1;
-  string token = 1;
+  string token = 2;
 }

@@ -2,11 +2,7 @@ syntax = "proto3";
 
 message HTTPMessage {
   string protocol = 1;
-  Payload payload = 2; 
-
-  message Payload {
-    string username = 1;
-    string password = 2;
-    string token = 3;
-  }
+  string username = 2;
+  string password = 3;
+  string token = 4;
 }
